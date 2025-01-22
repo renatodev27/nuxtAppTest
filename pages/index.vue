@@ -107,7 +107,7 @@ function __defineDateFormat() {
 }
 
 onMounted(async () => {
-    await listTasks()
+    //await listTasks()
 })
 
 </script>

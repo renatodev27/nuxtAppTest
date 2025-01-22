@@ -4,10 +4,19 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   runtimeConfig: {
-    public: {
-      apiBaseUrl: 'http://localhost:8055/items/',
-    }
+    directusAccessToken: process.env.DIRECTUS_ACCESS_TOKEN,
+    directusApiBaseUrl: process.env.DIRECTUS_BASE_API_URL
   },
 
-  modules: ['@nuxtjs/tailwindcss']
+  routeRules: {
+    '/': { prerender: true }
+  },
+
+  modules: ['@nuxtjs/tailwindcss'],
+  tailwindcss: {
+    viewer: {
+      endpoint: '/_tailwind',
+      exportViewer: true
+    }
+  }
 })
