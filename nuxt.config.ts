@@ -5,7 +5,9 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     directusAccessToken: process.env.DIRECTUS_ACCESS_TOKEN,
-    directusApiBaseUrl: process.env.DIRECTUS_BASE_API_URL
+    public: {
+      directusApiBaseUrl: process.env.DIRECTUS_BASE_API_URL
+    }
   },
 
   routeRules: {

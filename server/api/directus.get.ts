@@ -1,13 +1,13 @@
-import { createDirectus } from '@directus/sdk'
+import { createDirectus, registerUserVerify, rest } from '@directus/sdk'
 
 export default defineEventHandler(() => {
     const config = useRuntimeConfig()
 
-    return config.directusAccessToken
+    const directus = createDirectus(config.directusApiBaseUrl).with(rest())
 
-    const directus = createDirectus(config.directusApiBaseUrl)
+    const result = directus.request(registerUserVerify(config.directusAccessToken))
 
     //directus.auth.static(config.directusAccessToken)
 
-    return { message: 'Authentication success' }
+    return { message: result }
 })
