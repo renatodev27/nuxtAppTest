@@ -7,12 +7,5 @@
       </ul>
     </nav>
     <NuxtPage />
-
-    <div>
-      <h4>DATA TASKS</h4>
-    </div>
-
-    <!-- <NuxtLayout>
-    </NuxtLayout> -->
   </div>
 </template>

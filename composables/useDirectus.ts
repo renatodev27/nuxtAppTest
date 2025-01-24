@@ -5,9 +5,8 @@ export const useDirectus = () => {
 
     const getCollection = async (collectionName: string) => {
         try {
-            const response = await $directus.request(readCollection(collectionName))
-            console.log('from use directus')
-            return response.data
+            const data = await $directus.request(readCollection(collectionName))
+            return data
         }
         catch (error) {
             console.error(`No se pudo obtener la colección: ${error}`)

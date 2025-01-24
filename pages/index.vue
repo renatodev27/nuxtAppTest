@@ -14,7 +14,7 @@
                         <th>Acciones</th>
                     </tr>
                 </thead>
-                <!-- <tbody>
+                <tbody>
                     <tr v-for="task in tasks" :key="task.id">
                         <td><span v-text="task.task_id"></span></td>
                         <td><span v-text="task.title"></span></td>
@@ -25,7 +25,7 @@
                             <a href="#" @click="deleteTask(task.task_id)">Eliminar</a>
                         </td>
                     </tr>
-                </tbody> -->
+                </tbody>
             </table>
         </div>
         <div class="form-new">
@@ -38,28 +38,22 @@
         </div>
     </div>
 </template>
-<script setup>
-import { ref, onMounted } from 'vue'
-import axios from 'axios'
-
-const config = useRuntimeConfig()
+<script setup lang="ts">
+import { ref, onBeforeMount } from 'vue'
 
 const tasks = ref([])
-
 const title = ref('')
 const description = ref('')
 
 async function getTasks() {
-    const { data } = await useAsyncData( () => getCollection('tasks'))
-    console.log('data', data)
-}
+    const response = await useFetch('api/tasks/')
+    
+    tasks.value = response.data.value
+} 
 
-const { getCollection } = useDirectus()
-
-onMounted(async () => {
+onBeforeMount(async () => {
     await getTasks()
 })
-
 </script>
 <style lang="css" scoped>
 .container {
